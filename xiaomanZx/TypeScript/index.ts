@@ -95,3 +95,36 @@
 // }
 
 // 数组类型
+// number[] boolean[]
+// let arr:boolean[] = [false,true]
+// // 泛型
+// let array:Array<boolean> = [false,true]
+// 定义对象数组使用interface
+// interface X{
+//     name:string
+//     age?:number
+// }
+// let arr:X[] = [{name:'代',age:4},{name:'carrot'}]
+// 二维数组
+// let arr: number[][] = [[1], [2], [3]];
+// //使用泛型
+// let array: Array<Array<number>> = [[4], [5], [6]]
+// // 大杂烩数组 使用any
+// let hotchpotchArr: any[] = [1, '2', {}, true]
+// // 也可使用元组
+// let hotchpotch: [number, string, {}, boolean] = [1, '2', {}, true]
+// 可以在函数的剩余参数里面定义类型 number string 
+// function a(...args: any[]) {
+//     // console.log(args);
+//     //类数组 伪数组
+//     // console.log(arguments);
+//     // let d:IArguments = arguments
+//     let d:A = arguments
+//     console.log(d);
+// }
+// a(1, 2, 3)
+// interface A {
+//     callee:Function
+//     length:number
+//     [index:number]:any
+// }
