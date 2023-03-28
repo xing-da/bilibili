@@ -6,7 +6,7 @@
 // console.log(s);
 
 // /* Type Checking */
-// "strict": false, 
+// "strict": false,
 // let v1:void = null
 // let v2:void = undefined
 
@@ -113,7 +113,7 @@
 // let hotchpotchArr: any[] = [1, '2', {}, true]
 // // 也可使用元组
 // let hotchpotch: [number, string, {}, boolean] = [1, '2', {}, true]
-// 可以在函数的剩余参数里面定义类型 number string 
+// 可以在函数的剩余参数里面定义类型 number string
 // function a(...args: any[]) {
 //     // console.log(args);
 //     //类数组 伪数组
@@ -134,7 +134,7 @@
 // 2.函数默认的参数 | 函数可选参数 ?
 // 3.参数是一个对象如何定义
 // 4.函数this类型
-// 5.函数重载 
+// 5.函数重载
 // function add(a: number, b: number): number {
 //     return a + b
 // }
@@ -229,3 +229,33 @@
 // fn({
 //     run:'1212'
 // })
+
+// 内置对象
+// 1.ecma Number Date RegExp Error XMLHttpRequest
+// 2.dom querySelect MouseEvent
+// 3.bom promise localstorage location cookie
+// 4.案例
+// let num:Number = new Number(1)
+// let date:Date = new Date()
+// HTML(元素名称)Element 
+// HTMLDivElement 
+// let div = document.querySelector('div')
+// HTMLSpanElement 
+// let span = document.querySelector('span')
+// HTMLElement 
+// let footer = document.querySelector('footer')
+// let div:NodeList = document.querySelectorAll('div');
+// let div:NodeListOf<HTMLDivElement | HTMLElement> = document.querySelectorAll('div footer');
+// .
+// let local:Storage = localStorage
+// let lo:Location = location
+// let promise:Promise<string> = new Promise((r)=>r('dai'))
+// promise.then(res=>{
+//     res.length
+// })
+// let cookie:string = document.cookie
+// 
+let canvas: HTMLCanvasElement = document.querySelector('canvas') as HTMLCanvasElement;
+let ctx = canvas.getContext('2d');
+canvas.width = screen.availWidth
+canvas.height = screen.availHeight

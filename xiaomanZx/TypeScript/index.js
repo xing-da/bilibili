@@ -17,6 +17,6 @@
 // void应用场景
 // function myFn():void {
 // }
-function myFn() {
-    return 1;
-}
+// function myFn() {
+//     return 1;
+// }
