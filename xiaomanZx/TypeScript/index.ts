@@ -187,3 +187,45 @@
 // console.log(findNum());
 // console.log(findNum(3));
 // console.log(findNum([4]));
+
+// 联合类型|类型断言|交叉类型
+// let phone:number | string = 13486552472
+// let fn = function (type: number | boolean): boolean {
+//     return !!type;
+// }
+// let result = fn(0);
+// console.log(result);
+// .
+// interface Popple {
+//     name: string
+//     age: number
+// }
+// interface Man {
+//     sex: number
+// }
+// const dai = (man: Popple & Man): void => {
+//     console.log(man);
+// }
+// dai({
+//     name: 'dai',
+//     age: 4,
+//     sex: 2
+// })
+// .
+// let fn = function (num: number | string): void {
+//     console.log((num as string).length);
+// }
+// fn('1223')
+// interface A{
+//     run:string
+// }
+// interface B{
+//     build:string
+// }
+// let fn = (type:A | B):void =>{
+//     console.log((<A>type).run);
+//     console.log((type as A).run);
+// }
+// fn({
+//     run:'1212'
+// })
