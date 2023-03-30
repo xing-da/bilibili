@@ -538,3 +538,82 @@
 // //可以用
 // console.log(Reflect.ownKeys(obj));
 
+// 生成器 | 迭代器 用法一致
+// function * gen(){
+//     yield Promise.resolve('dai')//同步异步
+//     yield '1234'
+//     yield '123'
+//     yield '12'
+//     yield '1'
+// }
+// const d = gen()
+// console.log(d.next());
+// console.log(d.next());
+// console.log(d.next());
+// console.log(d.next());
+// console.log(d.next());
+// console.log(d.next());
+
+// 迭代器
+// set map
+// let set: Set<number> = new Set([1, 1, 2, 2, 3, 3])//天然去重
+// console.log(set);
+// let map: Map<any, any> = new Map()
+// let Arr = [1, 2, 3]
+// map.set(Arr, '代');
+// console.log(map.get(Arr));
+// function args() {
+//     console.log(arguments);//伪数组
+// }
+// let list = document.querySelectorAll('div');
+
+// const each = (value: any) => {
+//     let It: any = value[Symbol.iterator]()
+//     let next: any = { done: false }
+//     while (!next.done) {
+//         next = It.next()
+//         if (!next.done) {
+//             console.log(next.value);
+//         }
+//     }
+// }
+// each(map)
+// 迭代器的语法糖
+// 对象不能用,因为对象没有 iterator
+// for (const value of set) {
+//     console.log(value);
+// }
+//解构 底层原理也是去调用 iterator
+// let [a,b,c] = [1,2,3]
+// console.log(a,b,c);
+// 对象支持for of
+let obj = {
+    max: 5,
+    current: 0,
+    [Symbol.iterator]() {
+        return {
+            max: this.max,
+            current: this.current,
+            next() {
+                if (this.current == this.max) {
+                    return {
+                        value: undefined,
+                        done: true
+                    }
+                } else {
+                    return {
+                        value: this.current++,
+                        done: false
+                    }
+                }
+            }
+        }
+    }
+}
+for (const value of obj) {
+    console.log(value);
+}
+
+// let x = [...obj]
+let x = {...obj}
+console.log(x);
