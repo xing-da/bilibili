@@ -480,3 +480,14 @@
 // let succeed:number = Types.succeed
 // let key = Types[succeed]
 // console.log(`value--${succeed}`,`key--${key}`);
+
+// 类型推论|类型别名
+// 自动推断
+// let str = '979'
+// .
+// type s = string | number
+// let str: s = 'dai'
+// extends 包含的意思
+// 左边的值 会作为右边类型的子类型
+// never
+// type num = 1 extends number ? 1 : 0
