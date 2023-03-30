@@ -491,3 +491,22 @@
 // 左边的值 会作为右边类型的子类型
 // never
 // type num = 1 extends number ? 1 : 0
+
+// never 类型
+// type A = void | number | never;
+
+// type A = '唱' | '跳' | 'rap';
+// function kun(value: A) {
+//     switch (value) {
+//         case '唱':
+//             break
+//         case '跳':
+//             break
+//         case "rap":
+//             break
+//         default:
+//             // 兜底逻辑
+//             const error: never = value;
+//             break
+//     }
+// }
