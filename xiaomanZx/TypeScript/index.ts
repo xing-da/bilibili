@@ -510,3 +510,31 @@
 //             break
 //     }
 // }
+
+// symbol类型
+// let a1: symbol = Symbol(1)
+// let a2: symbol = Symbol(1)
+// let a3: symbol = Symbol()
+// // for Symbol for全局查找symbol有没有注册过这个key,有就拿来用,没就创建
+// console.log(Symbol.for('dai') === Symbol.for('dai'));
+// // 解决属性key重复问题
+// // let obj = {
+// //     name:1,
+// //     [a1]:111,
+// //     [a2]:222,
+// // }
+// // 这样无法拿到symbol
+// let obj = {
+//     name:1,
+//     a1:111,
+//     a2:222,
+// }
+// // console.log(obj);
+// // for in 无法读到 symbol
+// // Object.keys() 无法读到 symbol
+// // Object.getOwnPropertyNames() 无法读到 symbol
+// // 只能拿symbol
+// // console.log(Object.getOwnPropertySymbols(obj));
+// //可以用
+// console.log(Reflect.ownKeys(obj));
+
