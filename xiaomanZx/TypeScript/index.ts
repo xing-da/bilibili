@@ -406,3 +406,21 @@
 // const react = new React();
 // react.setName('d')
 // console.log(react.getName());
+
+// 元组类型
+
+// let arr = [1, true]; readonly 只读,不可修改
+// let arr:[number,boolean] = [1, true];
+//可以更改 number,定义什么,才能添加什么
+// arr[0] = 666
+// 应用
+// let excel:[string,string,number][] = [
+//     ['d','d',64],
+//     ['d','d',64],
+//     ['d','d',64],
+//     ['d','d',64],
+// ]
+// 类型别名
+// let arr: [x: number, y: boolean] = [1, true];
+// type first = typeof arr[0]
+// type first = typeof arr['length']
