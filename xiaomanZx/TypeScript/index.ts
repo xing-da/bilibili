@@ -424,3 +424,59 @@
 // let arr: [x: number, y: boolean] = [1, true];
 // type first = typeof arr[0]
 // type first = typeof arr['length']
+
+// 枚举类型
+// enum Color{
+//     red,
+//     green,
+//     blue,
+// }
+// 还可自增,还可自定义
+// enum Color{
+//     red = 1,
+//     green,
+//     blue,
+// }
+// 字符串枚举
+// enum Color{
+//     red = "1",
+//     green = "4",
+//     blue = "3",
+// }
+//异构枚举
+// enum Color{
+//     yes = 1,
+//     no = 'no'
+// }
+// console.log(Color.yes);
+// console.log(Color.no);
+// 接口枚举
+// enum Color {
+//     yes = 1,
+//     no = 'no'
+// }
+// interface A {
+//     red: Color.yes
+// }
+// let obj: A = {
+//     red: Color.yes
+// }
+// const 枚举 加上const编译后是常量,不加就成函数
+// const enum Types {
+//     succeed,
+//     fail
+
+// }
+
+// let code: number = 0;
+// if (code === Types.succeed) {
+
+// }
+// .
+// 反向映射
+// enum Types{
+//     succeed
+// }
+// let succeed:number = Types.succeed
+// let key = Types[succeed]
+// console.log(`value--${succeed}`,`key--${key}`);

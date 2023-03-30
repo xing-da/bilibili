@@ -1,3 +1,4 @@
+"use strict";
 // let str:String = '代';
 // console.log(str);
 // let num:number = 123;
@@ -337,18 +338,113 @@
 // })
 // Vue.version()
 // .
-class Ref {
-    constructor(value) {
-        this._value = value;
-    }
-    get value() {
-        return this._value + 'ddd';
-    }
-    set value(newValue) {
-        this._value = newValue + 'd';
-    }
-}
-const ref = new Ref('哈哈哈');
-console.log(ref.value);
-ref.value = 'tt';
-console.log(ref.value);
+// class Ref {
+//     _value: any
+//     constructor(value: any) {
+//         this._value = value
+//     }
+//     get value() {
+//         return this._value + 'ddd'
+//     }
+//     set value(newValue) {
+//         this._value = newValue + 'd'
+//     }
+// }
+// const ref = new Ref('哈哈哈')
+// console.log(ref.value);
+// ref.value = 'tt'
+// console.log(ref.value);
+// 基类 抽象类
+// abstract 所定义的抽象类
+// abstract 所定义的方法 都只能描述不能进行一个实现
+// abstract class Vue {
+//     name: string
+//     constructor(name?: string) {
+//         this.name = name;
+//     }
+//     abstract init(name: string): void
+//     getName(): string {
+//         return this.name
+//     }
+// }
+// class React extends Vue {
+//     constructor() {
+//         super()
+//     }
+//     init(name: string): void {
+//     }
+//     setName(name: string) {
+//         this.name = name
+//     }
+// }
+// const react = new React();
+// react.setName('d')
+// console.log(react.getName());
+// 元组类型
+// let arr = [1, true]; readonly 只读,不可修改
+// let arr:[number,boolean] = [1, true];
+//可以更改 number,定义什么,才能添加什么
+// arr[0] = 666
+// 应用
+// let excel:[string,string,number][] = [
+//     ['d','d',64],
+//     ['d','d',64],
+//     ['d','d',64],
+//     ['d','d',64],
+// ]
+// 类型别名
+// let arr: [x: number, y: boolean] = [1, true];
+// type first = typeof arr[0]
+// type first = typeof arr['length']
+// 枚举类型
+// enum Color{
+//     red,
+//     green,
+//     blue,
+// }
+// 还可自增,还可自定义
+// enum Color{
+//     red = 1,
+//     green,
+//     blue,
+// }
+// 字符串枚举
+// enum Color{
+//     red = "1",
+//     green = "4",
+//     blue = "3",
+// }
+//异构枚举
+// enum Color{
+//     yes = 1,
+//     no = 'no'
+// }
+// console.log(Color.yes);
+// console.log(Color.no);
+// 接口枚举
+// enum Color {
+//     yes = 1,
+//     no = 'no'
+// }
+// interface A {
+//     red: Color.yes
+// }
+// let obj: A = {
+//     red: Color.yes
+// }
+// const 枚举 加上const编译后是常量,不加就成函数
+// const enum Types {
+//     succeed,
+//     fail
+// }
+// let code: number = 0;
+// if (code === Types.succeed) {
+// }
+// .
+// 反向映射
+var Types;
+(function (Types) {
+    Types[Types["succeed"] = 0] = "succeed";
+})(Types || (Types = {}));
+let succeed = Types.succeed;
+console.log(succeed);
