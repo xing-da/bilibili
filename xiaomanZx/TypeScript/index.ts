@@ -377,3 +377,32 @@
 // console.log(ref.value);
 // ref.value = 'tt'
 // console.log(ref.value);
+
+// 基类 抽象类
+// abstract 所定义的抽象类
+// abstract 所定义的方法 都只能描述不能进行一个实现
+// abstract class Vue {
+//     name: string
+//     constructor(name?: string) {
+//         this.name = name;
+//     }
+//     abstract init(name: string): void
+//     getName(): string {
+//         return this.name
+//     }
+// }
+
+// class React extends Vue {
+//     constructor() {
+//         super()
+//     }
+//     init(name: string): void {
+
+//     }
+//     setName(name: string) {
+//         this.name = name
+//     }
+// }
+// const react = new React();
+// react.setName('d')
+// console.log(react.getName());
