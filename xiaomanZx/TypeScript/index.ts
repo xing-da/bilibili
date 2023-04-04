@@ -666,3 +666,41 @@
 // axios.get<Data>('./data.json').then(res => {
 //     console.log(res.code);
 // })
+
+// 泛型约束
+// 在类型后边加一个 extends 在跟一个约束的类型
+// function add<T extends number>(a: T, b: T) {
+//     return a + b
+// }
+// add(1,2)
+// .
+// interface Len{
+//     length:number
+// }
+// function fn<T extends Len>(a:T){
+//     a.length
+// }
+// fn([])
+// .
+// let obj = {
+//     name: 'dai',
+//     sex: 'man'
+// }
+
+// type key = keyof typeof obj
+
+// function ob<T extends object, K extends keyof T>(obj: T, key: K) {
+//     return obj[key]
+// }
+// ob(obj, 'name')
+// .
+// interface Data {
+//     name: string
+//     age: number
+//     sex: string
+// }
+// type Options<T extends object> = {
+//     // [key in keyof T]?: T[key]
+//    readonly [key in keyof T]: T[key]
+// }
+// type B = Options<Data>
