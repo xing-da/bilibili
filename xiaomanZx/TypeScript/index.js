@@ -442,9 +442,182 @@
 // }
 // .
 // 反向映射
-var Types;
-(function (Types) {
-    Types[Types["succeed"] = 0] = "succeed";
-})(Types || (Types = {}));
-let succeed = Types.succeed;
-console.log(succeed);
+// enum Types{
+//     succeed
+// }
+// let succeed:number = Types.succeed
+// let key = Types[succeed]
+// console.log(`value--${succeed}`,`key--${key}`);
+// 类型推论|类型别名
+// 自动推断
+// let str = '979'
+// .
+// type s = string | number
+// let str: s = 'dai'
+// extends 包含的意思
+// 左边的值 会作为右边类型的子类型
+// never
+// type num = 1 extends number ? 1 : 0
+// never 类型
+// type A = void | number | never;
+// type A = '唱' | '跳' | 'rap';
+// function kun(value: A) {
+//     switch (value) {
+//         case '唱':
+//             break
+//         case '跳':
+//             break
+//         case "rap":
+//             break
+//         default:
+//             // 兜底逻辑
+//             const error: never = value;
+//             break
+//     }
+// }
+// symbol类型
+// let a1: symbol = Symbol(1)
+// let a2: symbol = Symbol(1)
+// let a3: symbol = Symbol()
+// // for Symbol for全局查找symbol有没有注册过这个key,有就拿来用,没就创建
+// console.log(Symbol.for('dai') === Symbol.for('dai'));
+// // 解决属性key重复问题
+// // let obj = {
+// //     name:1,
+// //     [a1]:111,
+// //     [a2]:222,
+// // }
+// // 这样无法拿到symbol
+// let obj = {
+//     name:1,
+//     a1:111,
+//     a2:222,
+// }
+// // console.log(obj);
+// // for in 无法读到 symbol
+// // Object.keys() 无法读到 symbol
+// // Object.getOwnPropertyNames() 无法读到 symbol
+// // 只能拿symbol
+// // console.log(Object.getOwnPropertySymbols(obj));
+// //可以用
+// console.log(Reflect.ownKeys(obj));
+// 生成器 | 迭代器 用法一致
+// function * gen(){
+//     yield Promise.resolve('dai')//同步异步
+//     yield '1234'
+//     yield '123'
+//     yield '12'
+//     yield '1'
+// }
+// const d = gen()
+// console.log(d.next());
+// console.log(d.next());
+// console.log(d.next());
+// console.log(d.next());
+// console.log(d.next());
+// console.log(d.next());
+// 迭代器
+// set map
+// let set: Set<number> = new Set([1, 1, 2, 2, 3, 3])//天然去重
+// console.log(set);
+// let map: Map<any, any> = new Map()
+// let Arr = [1, 2, 3]
+// map.set(Arr, '代');
+// console.log(map.get(Arr));
+// function args() {
+//     console.log(arguments);//伪数组
+// }
+// let list = document.querySelectorAll('div');
+// const each = (value: any) => {
+//     let It: any = value[Symbol.iterator]()
+//     let next: any = { done: false }
+//     while (!next.done) {
+//         next = It.next()
+//         if (!next.done) {
+//             console.log(next.value);
+//         }
+//     }
+// }
+// each(map)
+// 迭代器的语法糖
+// 对象不能用,因为对象没有 iterator
+// for (const value of set) {
+//     console.log(value);
+// }
+//解构 底层原理也是去调用 iterator
+// let [a,b,c] = [1,2,3]
+// console.log(a,b,c);
+// 对象支持for of
+// let obj = {
+//     max: 5,
+//     current: 0,
+//     [Symbol.iterator]() {
+//         return {
+//             max: this.max,
+//             current: this.current,
+//             next() {
+//                 if (this.current == this.max) {
+//                     return {
+//                         value: undefined,
+//                         done: true
+//                     }
+//                 } else {
+//                     return {
+//                         value: this.current++,
+//                         done: false
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
+// for (const value of obj) {
+//     console.log(value);
+// }
+// // let x = [...obj]
+// let x = {...obj}
+// console.log(x);
+// 泛型
+//动态类型
+// function dai(a: number, b: number): Array<number> {
+//     return [a, b]
+// }
+// function str(a: string, b: string): Array<string> {
+//     return [a, b]
+// }
+// .
+// function dai<T>(a:T,b:T){
+//     return [a,b]
+// }
+// dai(true,false)
+// .
+// type A<T> = string | number | T
+// let a:A<boolean> = ''
+// .
+// interface Data<T>{
+//     msg:T
+// }
+// let data:Data<string> = {msg:''}
+// .
+// function add<T, K = number>(a: T, b: K): Array<T | K> {
+//     return [a, b]
+// }
+// add(true, 1)
+// .
+const axios = {
+    get(url) {
+        return new Promise((resolve, reject) => {
+            let xhr = new XMLHttpRequest();
+            xhr.open('GET', url);
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    resolve(JSON.parse(xhr.responseText));
+                }
+            };
+            xhr.send(null);
+        });
+    }
+};
+axios.get('./data.json').then(res => {
+    console.log(res.code);
+});

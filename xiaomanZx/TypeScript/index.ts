@@ -587,33 +587,82 @@
 // let [a,b,c] = [1,2,3]
 // console.log(a,b,c);
 // 对象支持for of
-let obj = {
-    max: 5,
-    current: 0,
-    [Symbol.iterator]() {
-        return {
-            max: this.max,
-            current: this.current,
-            next() {
-                if (this.current == this.max) {
-                    return {
-                        value: undefined,
-                        done: true
-                    }
-                } else {
-                    return {
-                        value: this.current++,
-                        done: false
-                    }
-                }
-            }
-        }
-    }
-}
-for (const value of obj) {
-    console.log(value);
-}
+// let obj = {
+//     max: 5,
+//     current: 0,
+//     [Symbol.iterator]() {
+//         return {
+//             max: this.max,
+//             current: this.current,
+//             next() {
+//                 if (this.current == this.max) {
+//                     return {
+//                         value: undefined,
+//                         done: true
+//                     }
+//                 } else {
+//                     return {
+//                         value: this.current++,
+//                         done: false
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
+// for (const value of obj) {
+//     console.log(value);
+// }
 
-// let x = [...obj]
-let x = {...obj}
-console.log(x);
+// // let x = [...obj]
+// let x = {...obj}
+// console.log(x);
+
+// 泛型
+//动态类型
+// function dai(a: number, b: number): Array<number> {
+//     return [a, b]
+// }
+// function str(a: string, b: string): Array<string> {
+//     return [a, b]
+// }
+// .
+// function dai<T>(a:T,b:T){
+//     return [a,b]
+// }
+// dai(true,false)
+// .
+// type A<T> = string | number | T
+// let a:A<boolean> = ''
+// .
+// interface Data<T>{
+//     msg:T
+// }
+// let data:Data<string> = {msg:''}
+// .
+// function add<T, K = number>(a: T, b: K): Array<T | K> {
+//     return [a, b]
+// }
+// add(true, 1)
+// .
+// const axios = {
+//     get<T>(url: string): Promise<T> {
+//         return new Promise((resolve, reject) => {
+//             let xhr: XMLHttpRequest = new XMLHttpRequest()
+//             xhr.open('GET', url)
+//             xhr.onreadystatechange = () => {
+//                 if (xhr.readyState == 4 && xhr.status == 200) {
+//                     resolve(JSON.parse(xhr.responseText))
+//                 }
+//             }
+//             xhr.send(null)
+//         })
+//     }
+// }
+// interface Data {
+//     message: string,
+//     code: number
+// }
+// axios.get<Data>('./data.json').then(res => {
+//     console.log(res.code);
+// })
