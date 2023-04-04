@@ -3,9 +3,9 @@
     /* Visit https://aka.ms/tsconfig to read more about this file */
 
     /* Projects */
-    // "incremental": true,                              /* Save .tsbuildinfo files to allow for incremental compilation of projects. */
-    // "composite": true,                                /* Enable constraints that allow a TypeScript project to be used with project references. */
-    // "tsBuildInfoFile": "./.tsbuildinfo",              /* Specify the path to .tsbuildinfo incremental compilation file. */
+    // "incremental": true,                              /* TS编译器在第一次编译后,会生成一个存储缓存文件,第二次会在第一次的基础上,从而加快速度 */
+    // "composite": true,                                /* 启动允许TypeScript项目与项目引用一起使用的约束 */
+    // "tsBuildInfoFile": "./.tsbuildinfo",              /* 指定增量编译文件的路径 */
     // "disableSourceOfProjectReferenceRedirect": true,  /* Disable preferring source files instead of declaration files when referencing composite projects. */
     // "disableSolutionSearching": true,                 /* Opt a project out of multi-project reference checking when editing. */
     // "disableReferencedProjectLoad": true,             /* Reduce the number of projects loaded automatically by TypeScript. */
