@@ -704,3 +704,21 @@
 //    readonly [key in keyof T]: T[key]
 // }
 // type B = Options<Data>
+
+// 命名空间 namespace
+// export 导出为模型
+// namespace A{
+//     export const a = 1
+// }
+// console.log(A.a);
+// .
+// 嵌套
+// namespace A{
+//     export namespace B{
+//         export const C = 5
+//     }
+// }
+// 抽离 {B}
+// 简化
+// import AA = A.B
+// 重名则合并
