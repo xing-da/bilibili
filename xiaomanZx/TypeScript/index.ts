@@ -1,6 +1,8 @@
 // let str:String = '代';
 // console.log(str);
 
+import { get } from "http";
+
 // let num:number = 123;
 // let s:String = `${num}`;
 // console.log(s);
@@ -757,35 +759,108 @@
 
 // let obj = Object.assign(a,b,c)
 // .类的混入
-class A {
-    type: boolean
-    changeType(): void {
-        this.type = !this.type
-    }
-}
-class B {
-    name: string
-    getName(): string {
-        return this.name
-    }
-}
-class C implements A, B {
-    type: boolean = false;
-    name: string = "dai"
-    changeType: () => void
-    getName: () => string
-}
-mixins(C, [A, B])
-function mixins(curClass: any, itemClass: any[]) {
-    itemClass.forEach(item => {
-        Object.getOwnPropertyNames(item.prototype).forEach(name => {
-            curClass.prototype[name] = item.prototype[name]
-        })
-    })
-}
-let ccc = new C();
-console.log(ccc.type);
-ccc.changeType()
+// class A {
+//     type: boolean
+//     changeType(): void {
+//         this.type = !this.type
+//     }
+// }
+// class B {
+//     name: string
+//     getName(): string {
+//         return this.name
+//     }
+// }
+// class C implements A, B {
+//     type: boolean = false;
+//     name: string = "dai"
+//     changeType: () => void
+//     getName: () => string
+// }
+// mixins(C, [A, B])
+// function mixins(curClass: any, itemClass: any[]) {
+//     itemClass.forEach(item => {
+//         Object.getOwnPropertyNames(item.prototype).forEach(name => {
+//             curClass.prototype[name] = item.prototype[name]
+//         })
+//     })
+// }
+// let ccc = new C();
+// console.log(ccc.type);
+// ccc.changeType()
+// console.log(ccc.type);
 
-console.log(ccc.type);
+// 装饰器 Decorator
+// 1.类装饰器 ClassDecorator target 构造函数
+// const Base: ClassDecorator = (target) => {
+//     // console.log(target);
+//     target.prototype.dai = 'dai'
+//     target.prototype.fn = () => {
+//         console.log('新增方法');
+//     }
+// }
+// @Base
+// class Http {
 
+// }
+// import 'reflect-metadata'
+// import axios from 'axios'
+// const Base = (name: string) => {
+//     const fn: ClassDecorator = (target) => {
+//         // console.log(target);
+//         target.prototype.dai = name
+//         target.prototype.fn = () => {
+//             // console.log('新增方法');
+//         }
+//     }
+//     return fn
+// }
+// const Get = (url: string) => {
+//     const fn: MethodDecorator = (target, _, descriptor: PropertyDescriptor) => {
+//         // console.log(target, key, descriptor);
+//         const key = Reflect.getMetadata('key', target)
+//         axios.get(url).then(res => {
+//             descriptor.value(key ? res.data[key] : res.data)
+//         })
+//     }
+//     return fn
+// }
+// const Result = () => {
+//     const fn: ParameterDecorator = (target, key, index) => {
+//         Reflect.defineMetadata('key', 'result', target)
+//     }
+//     return fn
+// }
+
+// const Name: PropertyDecorator = (target, key) => {
+//     console.log(target, key);
+
+// }
+// @Base('de')
+// class Http {
+//     @Name
+//     dai: string
+//     constructor() {
+//         this.dai = 'dai'
+//     }
+//     @Get('https//api.apiopen.top/api/getHaoKanVideo?page=0&size=10')
+//     getList(@Result() data: any) {
+//         console.log(data);
+//     }
+//     // @Post()
+//     create() {
+
+//     }
+// }
+// const http = new Http() as any
+//兼容 ???
+// Base(http)
+// http.fn()
+// console.log(http.dai);
+
+// 2.属性装饰器 PropertyDescriptor
+// 3.参数装饰器 ParameterDecorator
+// 4.方法装饰器 MethodDecorator
+// 5.装饰器工厂
+// 6.import 'reflect-metadata'
+// 7.axios
