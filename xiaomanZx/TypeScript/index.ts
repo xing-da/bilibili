@@ -722,3 +722,69 @@
 // 简化
 // import AA = A.B
 // 重名则合并
+
+// 三斜线指令
+// ///<reference path="index.html"/>
+
+//声明文件,d.ts
+// import express from 'express'
+// const app = express()
+// const router = express.Router()
+// app.use('/api', router)
+// router.get('/api', (req: any, res: any) => {
+//     res.json({
+//         code: 200,
+//     })
+// })
+// app.listen(9001, () => {
+//     console.log('9001');
+
+// })
+
+// Mixins 混入
+// interface Name {
+//     name: string
+// }
+// interface Age {
+//     age: number
+// }
+// interface Sex {
+//     sex: number
+// }
+// let a: Name = { name: 'dai' }
+// let b: Age = { age: 3 }
+// let c: Sex = { sex: 0 }
+
+// let obj = Object.assign(a,b,c)
+// .类的混入
+class A {
+    type: boolean
+    changeType(): void {
+        this.type = !this.type
+    }
+}
+class B {
+    name: string
+    getName(): string {
+        return this.name
+    }
+}
+class C implements A, B {
+    type: boolean = false;
+    name: string = "dai"
+    changeType: () => void
+    getName: () => string
+}
+mixins(C, [A, B])
+function mixins(curClass: any, itemClass: any[]) {
+    itemClass.forEach(item => {
+        Object.getOwnPropertyNames(item.prototype).forEach(name => {
+            curClass.prototype[name] = item.prototype[name]
+        })
+    })
+}
+let ccc = new C();
+console.log(ccc.type);
+ccc.changeType()
+console.log(ccc.type);
+

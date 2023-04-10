@@ -1,4 +1,3 @@
-"use strict";
 // let str:String = '代';
 // console.log(str);
 // let num:number = 123;
@@ -604,20 +603,141 @@
 // }
 // add(true, 1)
 // .
-const axios = {
-    get(url) {
-        return new Promise((resolve, reject) => {
-            let xhr = new XMLHttpRequest();
-            xhr.open('GET', url);
-            xhr.onreadystatechange = () => {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    resolve(JSON.parse(xhr.responseText));
-                }
-            };
-            xhr.send(null);
-        });
+// const axios = {
+//     get<T>(url: string): Promise<T> {
+//         return new Promise((resolve, reject) => {
+//             let xhr: XMLHttpRequest = new XMLHttpRequest()
+//             xhr.open('GET', url)
+//             xhr.onreadystatechange = () => {
+//                 if (xhr.readyState == 4 && xhr.status == 200) {
+//                     resolve(JSON.parse(xhr.responseText))
+//                 }
+//             }
+//             xhr.send(null)
+//         })
+//     }
+// }
+// interface Data {
+//     message: string,
+//     code: number
+// }
+// axios.get<Data>('./data.json').then(res => {
+//     console.log(res.code);
+// })
+// 泛型约束
+// 在类型后边加一个 extends 在跟一个约束的类型
+// function add<T extends number>(a: T, b: T) {
+//     return a + b
+// }
+// add(1,2)
+// .
+// interface Len{
+//     length:number
+// }
+// function fn<T extends Len>(a:T){
+//     a.length
+// }
+// fn([])
+// .
+// let obj = {
+//     name: 'dai',
+//     sex: 'man'
+// }
+// type key = keyof typeof obj
+// function ob<T extends object, K extends keyof T>(obj: T, key: K) {
+//     return obj[key]
+// }
+// ob(obj, 'name')
+// .
+// interface Data {
+//     name: string
+//     age: number
+//     sex: string
+// }
+// type Options<T extends object> = {
+//     // [key in keyof T]?: T[key]
+//    readonly [key in keyof T]: T[key]
+// }
+// type B = Options<Data>
+// 命名空间 namespace
+// export 导出为模型
+// namespace A{
+//     export const a = 1
+// }
+// console.log(A.a);
+// .
+// 嵌套
+// namespace A{
+//     export namespace B{
+//         export const C = 5
+//     }
+// }
+// 抽离 {B}
+// 简化
+// import AA = A.B
+// 重名则合并
+// 三斜线指令
+// ///<reference path="index.html"/>
+//声明文件,d.ts
+// import express from 'express'
+// const app = express()
+// const router = express.Router()
+// app.use('/api', router)
+// router.get('/api', (req: any, res: any) => {
+//     res.json({
+//         code: 200,
+//     })
+// })
+// app.listen(9001, () => {
+//     console.log('9001');
+// })
+// Mixins 混入
+// interface Name {
+//     name: string
+// }
+// interface Age {
+//     age: number
+// }
+// interface Sex {
+//     sex: number
+// }
+// let a: Name = { name: 'dai' }
+// let b: Age = { age: 3 }
+// let c: Sex = { sex: 0 }
+// let obj = Object.assign(a,b,c)
+// .类的混入
+var A = /** @class */ (function () {
+    function A() {
     }
-};
-axios.get('./data.json').then(res => {
-    console.log(res.code);
-});
+    A.prototype.changeType = function () {
+        this.type = !this.type;
+    };
+    return A;
+}());
+var B = /** @class */ (function () {
+    function B() {
+    }
+    B.prototype.getName = function () {
+        return this.name;
+    };
+    return B;
+}());
+var C = /** @class */ (function () {
+    function C() {
+        this.type = false;
+        this.name = "dai";
+    }
+    return C;
+}());
+mixins(C, [A, B]);
+function mixins(curClass, itemClass) {
+    itemClass.forEach(function (item) {
+        Object.getOwnPropertyNames(item.prototype).forEach(function (name) {
+            curClass.prototype[name] = item.prototype[name];
+        });
+    });
+}
+var ccc = new C();
+console.log(ccc.type);
+ccc.changeType();
+console.log(ccc.type);
