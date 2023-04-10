@@ -786,5 +786,6 @@ function mixins(curClass: any, itemClass: any[]) {
 let ccc = new C();
 console.log(ccc.type);
 ccc.changeType()
+
 console.log(ccc.type);
 
